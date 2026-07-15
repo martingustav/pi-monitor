@@ -28,6 +28,11 @@ get_syncthing_home() {
 
 SYNCTHING_HOME=$(get_syncthing_home)
 
+if [[ -z "$SYNCTHING_HOME" ]]; then
+    echo "Unable to determine Syncthing home directory"
+    exit 1
+fi
+
 # Helper function which runs systemctl with the correct service scope
 run_systemctl() {
     if [[ $SERVICE_SCOPE == "system" ]]; then
